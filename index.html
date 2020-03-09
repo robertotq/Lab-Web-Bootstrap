@@ -2,94 +2,122 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue"></script>
 </head>
 
 <body>
-  <div class="container">
-    <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
-      <a class="navbar-brand" href="#">
-        Menu flotante
-      </a>
-    </nav>
-  </div>
+  <div id="app">
+    <div class="container">
+      <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
+        <a class="navbar-brand" href="#">
+          {{ message }}
+        </a>
+      </nav>
+    </div>
 
-  <div class="container-fluid justify-content-around" style="margin-top: 80px;">
-    <div class="row justify-content-around">
-      <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Ejemplo de tarjeta</h5>
-            <p class="card-text">Base de la tarjeta</p>
+    <div class="container-fluid justify-content-around" style="margin-top: 80px;">
+      <div class="row justify-content-around">
+        <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ejemplo de tarjeta</h5>
+              <p class="card-text">Base de la tarjeta</p>
+              <input v-model="newData" v-on:keyup.enter="addToList"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ejemplo de tarjeta</h5>
+              <p class="card-text">Base de la tarjeta</p>
+              <input v-model="newData" v-on:keyup.enter="addToList"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ejemplo de tarjeta</h5>
+              <p class="card-text">Base de la tarjeta</p>
+              <input v-model="newData" v-on:keyup.enter="addToList"/>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Ejemplo de tarjeta</h5>
-            <p class="card-text">Base de la tarjeta</p>
+
+      <div v-show="active" class="row justify-content-around">
+        <div class="col-12 col-md-8 col-lg-6" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Con V-show</h5>
+              <p class="card-text">Base de la tarjeta</p>
+                <ul>
+                  <li v-for="data in dataList"> {{ data }}</li>
+                </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Ejemplo de tarjeta</h5>
-            <p class="card-text">Base de la tarjeta</p>
+        <div class="col-12 col-md-8 col-lg-6" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Otras Tarjetas</h5>
+              <p class="card-text">Base de la tarjeta</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row justify-content-around">
-      <div class="col-12 col-md-8 col-lg-6" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Otras Tarjetas</h5>
-            <p class="card-text">Base de la tarjeta</p>
+
+    <div v-if="active" class="container justify-content-around">
+      <div class="row justify-content-around">
+        <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Con V-if</h5>
+              <p class="card-text">Base de la tarjeta</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-12 col-md-8 col-lg-6" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Otras Tarjetas</h5>
-            <p class="card-text">Base de la tarjeta</p>
+        <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Contenedor sin fluid</h5>
+              <p class="card-text">Base de la tarjeta</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Contenedor sin fluid</h5>
+              <p class="card-text">Base de la tarjeta</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <button v-on:click="active = !active"> Change Active! </button>
+
   </div>
-
-
-  <div class="container justify-content-around">
-    <div class="row justify-content-around">
-      <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Contenedor sin fluid</h5>
-            <p class="card-text">Base de la tarjeta</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Contenedor sin fluid</h5>
-            <p class="card-text">Base de la tarjeta</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4" style=padding-bottom:2vh>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Contenedor sin fluid</h5>
-            <p class="card-text">Base de la tarjeta</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        newData: 'Roberto',
+        dataList: ['Esto', 'Esta', 'En', 'Un', 'Arreglo'],
+        active: true
+      },
+      methods: {
+        addToList: function(event){
+          this.dataList.push(event.target.value)
+          this.newData = ""
+        }
+      }
+    })
+  </script>
 </body>
 </html>
